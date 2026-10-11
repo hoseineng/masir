@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#10121c" />
+  <title>مسیر من | داشبورد رشد شخصی</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark"><span>م</span><i></i></div>
+        <div><strong>مسیر من</strong><small>PERSONAL GROWTH OS</small></div>
+      </div>
+      <div class="profile-mini">
+        <div class="avatar">✦</div><div><strong>نسخه بهتر من</strong><small>هر روز، یک قدم جلوتر</small></div>
+      </div>
+      <nav class="nav">
+        <button class="nav-item active" data-view="today"><span class="nav-icon">◈</span> نمای امروز</button>
+        <button class="nav-item" data-view="analytics"><span class="nav-icon">▥</span> تحلیل و روند</button>
+        <button class="nav-item" data-view="history"><span class="nav-icon">▦</span> تاریخچه روزها</button>
+        <button class="nav-item" data-view="review"><span class="nav-icon">✎</span> دفتر بازبینی</button>
+        <button class="nav-item" data-view="jscoach"><span class="nav-icon">⌘</span> مربی JavaScript</button>
+        <button class="nav-item" data-view="speakinglab"><span class="nav-icon">◖</span> تمرین فن بیان</button>
+        <button class="nav-item" data-view="booklab"><span class="nav-icon">▤</span> مربی کتاب‌خوانی</button>
+        <button class="nav-item" data-view="routines"><span class="nav-icon">☼</span> روتین صبح و شب</button>
+
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="focus-card"><span class="focus-spark">✦</span><strong>قانون کوچک امروز</strong><p>به دنبال روز بی‌نقص نباش؛ فقط قدم بعدی را انجام بده.</p></div>
+        <button class="nav-item" id="exportBtn"><span class="nav-icon">↥</span> پشتیبان‌گیری</button>
+        <button class="nav-item" id="importBtn"><span class="nav-icon">↧</span> بازیابی اطلاعات</button>
+        <input type="file" id="importFile" accept="application/json" hidden />
+        <div class="side-footer">نسخه شخصی · ذخیره روی همین دستگاه</div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="باز کردن منو">☰</button>
+        <div class="breadcrumb"><span>فضای شخصی</span><b>/</b><strong id="pageName">نمای امروز</strong></div>
+        <div class="top-actions"><span class="date-chip" id="todayLabel"></span><button class="icon-btn" id="themeBtn" title="تغییر ظاهر">◐</button></div>
+      </header>
+
+      <section class="view active" id="view-today">
+        <div class="hero">
+          <div class="hero-copy"><div class="eyebrow"><span class="live-dot"></span> داشبورد رشد شخصی</div>
+            <h1 id="greeting">سلام، به مسیر خودت خوش آمدی <span>✦</span></h1>
+            <p>قرار نیست هر روز عالی باشی؛ قرار است هر روز کمی آگاه‌تر انتخاب کنی.</p>
+            <div class="hero-meta"><span>◷ <b id="heroDate"></b></span><span>✧ تمرکز امروز: <b>پیشرفت پایدار</b></span></div>
+          </div>
+          <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orb-core">✦</div><div class="orb-label">GROW<br/>SLOWLY</div><span class="star s1">✧</span><span class="star s2">✦</span><span class="star s3">·</span></div>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card progress-stat"><div class="stat-top"><span>امتیاز امروز</span><span class="stat-icon purple">◈</span></div><div class="stat-main"><strong id="todayScore">۰٪</strong><span class="trend" id="scoreTrend">شروع کن</span></div><div class="progress-track"><span id="scoreBar"></span></div><small id="scoreCaption">هر تیک، یک رأی به نفع خودت</small></article>
+          <article class="stat-card"><div class="stat-top"><span>عادت‌های انجام‌شده</span><span class="stat-icon mint">✓</span></div><div class="stat-main"><strong id="doneCount">۰ <small>/ ۶</small></strong><span class="muted">امروز</span></div><div class="mini-bars" id="miniBars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><small>ثبات مهم‌تر از شدت است</small></article>
+          <article class="stat-card"><div class="stat-top"><span>آب نوشیده‌شده</span><span class="stat-icon blue">≈</span></div><div class="stat-main"><strong id="waterCount">۰ <small>/ ۸ لیوان</small></strong><span class="muted">لیوان</span></div><div class="water-actions"><button id="waterMinus" aria-label="کم کردن آب">−</button><div class="water-track"><span id="waterBar"></span></div><button id="waterPlus" aria-label="اضافه کردن آب">+</button></div><small>هدف قابل تنظیم در ادامه مسیر</small></article>
+          <article class="stat-card"><div class="stat-top"><span>روزهای ثبت‌شده</span><span class="stat-icon orange">✧</span></div><div class="stat-main"><strong id="loggedDays">۰</strong><span class="muted">روز</span></div><div class="streak-line"><span class="streak-flame">✦</span><span id="streakText">اولین روزت را ثبت کن</span></div><small>بر اساس روزهایی که ثبت کرده‌ای</small></article>
+        </div>
+
+        <div class="content-grid">
+          <section class="panel habits-panel">
+            <div class="panel-heading"><div><div class="eyebrow">DAILY SYSTEM</div><h2>سیستم روزانه من</h2><p>کارها را انجام بده و کوتاه ثبت کن چه کردی.</p></div><span class="section-pill" id="habitProgressPill">۰ از ۶</span></div>
+            <div class="habit-list" id="habitList"></div>
+            <div class="panel-foot"><span>✦ <span id="habitFootText">با یک مورد شروع کن</span></span><button class="text-btn" id="resetDayBtn">پاک‌کردن تیک‌های امروز ↺</button></div>
+          </section>
+          <section class="panel priorities-panel">
+            <div class="panel-heading"><div><div class="eyebrow">INTENTION SETTING</div><h2>سه اولویت امروز</h2><p>کمتر انتخاب کن؛ عمیق‌تر انجام بده.</p></div><span class="stat-icon purple">◎</span></div>
+            <form id="priorityForm" class="priority-form"><input id="priorityInput" maxlength="100" placeholder="مهم‌ترین قدم امروز..." aria-label="اولویت جدید" /><button type="submit">+</button></form>
+            <div class="priority-list" id="priorityList"></div>
+            <div class="quote-card"><span class="quote-mark">“</span><p id="dailyQuote">پیشرفت واقعی، نتیجه کارهای کوچکی است که تکرار می‌کنی.</p><small>یادآوری امروز · برای خودت</small><button id="newQuoteBtn" class="quote-refresh" title="پیام دیگر">↻</button></div>
+          </section>
+        </div>
+        <section class="panel quick-review">
+          <div class="panel-heading"><div><div class="eyebrow">CLOSE THE LOOP</div><h2>یک دقیقه مکث</h2><p>همین حالا یک جمله بنویس تا روزت فقط از کنار تو عبور نکند.</p></div><button class="secondary-btn" data-go="review">بازبینی کامل روز <span>←</span></button></div>
+          <div class="quick-fields"><label>امروز از چه چیزی راضی‌ام؟<input id="quickWin" placeholder="حتی یک قدم کوچک..." /></label><label>قدم بعدی من چیست؟<input id="quickNext" placeholder="یک اقدام مشخص و کوچک..." /></label></div>
+        </section>
+      </section>
+
+      <section class="view" id="view-analytics">
+        <div class="view-heading"><div><div class="eyebrow">YOUR PROGRESS, NOT PERFECTION</div><h1>تحلیل و روند</h1><p>اعداد قرار نیست تو را قضاوت کنند؛ قرار است به تصمیم بهتر کمک کنند.</p></div><span class="section-pill" id="analyticsPeriod">آخرین ۷ روز ثبت‌شده</span></div>
+        <div class="stats-grid analytics-stats">
+          <article class="stat-card"><div class="stat-top"><span>میانگین عادت‌ها</span><span class="stat-icon purple">◈</span></div><div class="stat-main"><strong id="avgScore">۰٪</strong><span class="muted">در بازه اخیر</span></div><div class="progress-track"><span id="avgBar"></span></div></article>
+          <article class="stat-card"><div class="stat-top"><span>تغییر نسبت به بازه قبل</span><span class="stat-icon mint">↗</span></div><div class="stat-main"><strong id="periodChange">—</strong><span class="muted">واحد درصد</span></div><small id="periodCompare">با ثبت روزهای بیشتر دقیق‌تر می‌شود.</small></article>
+          <article class="stat-card"><div class="stat-top"><span>میانگین انرژی</span><span class="stat-icon orange">☼</span></div><div class="stat-main"><strong id="avgEnergy">—</strong><span class="muted">از ۵</span></div><small>بر اساس بازبینی‌های ثبت‌شده</small></article>
+          <article class="stat-card"><div class="stat-top"><span>میانگین تمرکز</span><span class="stat-icon blue">◎</span></div><div class="stat-main"><strong id="avgFocus">—</strong><span class="muted">از ۵</span></div><small>برای کشف روند، نه قضاوت</small></article>
+        </div>
+        <div class="content-grid analytics-grid">
+          <section class="panel"><div class="panel-heading"><div><div class="eyebrow">CONSISTENCY</div><h2>روند عادت‌ها</h2><p>درصد انجام عادت‌ها در روزهای ثبت‌شده اخیر.</p></div></div><div class="chart" id="trendChart"></div><div class="chart-legend"><span><i class="legend-dot"></i> درصد انجام عادت‌ها</span><span class="muted">۰ تا ۱۰۰٪</span></div></section>
+          <section class="panel"><div class="panel-heading"><div><div class="eyebrow">COACH NOTES</div><h2>برداشت مربی</h2><p>چند نشانه برای انتخاب قدم بعدی.</p></div></div><div class="coach-insights" id="coachInsights"></div></section>
+        </div>
+        <section class="panel"><div class="panel-heading"><div><div class="eyebrow">HABIT BREAKDOWN</div><h2>کدام عادت‌ها بیشتر همراهت بوده‌اند؟</h2></div></div><div id="habitBreakdown" class="breakdown-list"></div></section>
+      </section>
+
+      <section class="view" id="view-history">
+        <div class="view-heading"><div><div class="eyebrow">YOUR JOURNEY</div><h1>تاریخچه روزها</h1><p>روزهای گذشته را ببین و از تجربه‌شان استفاده کن.</p></div><div class="history-controls"><input type="month" id="historyMonth" aria-label="انتخاب ماه" /><button class="secondary-btn" id="allHistoryBtn">همه روزها</button></div></div>
+        <section class="panel history-panel"><div class="panel-heading"><div><h2 id="historyTitle">روزهای ثبت‌شده</h2><p>برای دیدن جزئیات هر روز روی آن بزن.</p></div><span class="section-pill" id="historyCount">۰ روز</span></div><div class="history-list" id="historyList"></div></section>
+        <section class="panel history-detail" id="historyDetail"><div class="empty-state"><div class="empty-icon">▦</div><h3>یک روز را انتخاب کن</h3><p>جزئیات و یادداشت‌های آن روز اینجا نمایش داده می‌شود.</p></div></section>
+      </section>
+
+      <section class="view" id="view-review">
+        <div class="view-heading"><div><div class="eyebrow">REFLECT · LEARN · ADJUST</div><h1>دفتر بازبینی روزانه</h1><p>بدون سرزنش خودت، واقعیت امروز را ببین و برای فردا یک قدم کوچک انتخاب کن.</p></div><span class="section-pill" id="reviewDate"></span></div>
+        <form id="reviewForm">
+          <section class="panel review-panel"><div class="panel-heading"><div><h2>حال امروز من</h2><p>امتیازها فقط یادداشت شخصی‌اند؛ نمره ارزشمندی تو نیستند.</p></div><span class="stat-icon purple">♡</span></div>
+            <div class="rating-grid">
+              <label class="rating-field"><span>انرژی</span><div class="rating-options" data-rating="energy"><button type="button" data-value="1">۱</button><button type="button" data-value="2">۲</button><button type="button" data-value="3">۳</button><button type="button" data-value="4">۴</button><button type="button" data-value="5">۵</button></div><small>از کم تا زیاد</small></label>
+              <label class="rating-field"><span>تمرکز</span><div class="rating-options" data-rating="focus"><button type="button" data-value="1">۱</button><button type="button" data-value="2">۲</button><button type="button" data-value="3">۳</button><button type="button" data-value="4">۴</button><button type="button" data-value="5">۵</button></div><small>از پراکنده تا متمرکز</small></label>
+              <label class="rating-field"><span>کنترل گوشی</span><div class="rating-options" data-rating="phone"><button type="button" data-value="1">۱</button><button type="button" data-value="2">۲</button><button type="button" data-value="3">۳</button><button type="button" data-value="4">۴</button><button type="button" data-value="5">۵</button></div><small>از کم تا خوب</small></label>
+              <label class="rating-field"><span>کیفیت خواب</span><div class="rating-options" data-rating="sleep"><button type="button" data-value="1">۱</button><button type="button" data-value="2">۲</button><button type="button" data-value="3">۳</button><button type="button" data-value="4">۴</button><button type="button" data-value="5">۵</button></div><small>از ضعیف تا خوب</small></label>
+            </div>
+          </section>
+          <section class="panel review-panel"><div class="panel-heading"><div><h2>یادگیری از امروز</h2><p>به جای فقط تیک‌زدن، معنای تجربه‌ات را پیدا کن.</p></div><span class="stat-icon mint">✎</span></div>
+            <div class="review-fields">
+              <label>مهم‌ترین کاری که امروز انجام دادم<textarea id="rvDone" rows="2" placeholder="چه کاری واقعاً انجام شد؟"></textarea></label>
+              <label>امروز چه چیزی یاد گرفتم؟<textarea id="rvLearned" rows="2" placeholder="یک نکته درباره مهارت یا خودت..."></textarea></label>
+              <label>بهترین لحظه یا برد کوچک من<textarea id="rvWin" rows="2" placeholder="چیزی که ارزش دیدن دارد..."></textarea></label>
+              <label>بزرگ‌ترین مانع چه بود؟<textarea id="rvBarrier" rows="2" placeholder="بدون قضاوت، فقط واقعیت..."></textarea></label>
+              <label>فردا اولین قدم کوچک من<textarea id="rvNext" rows="2" placeholder="کاری که در ۵ تا ۲۰ دقیقه شروع شود..."></textarea></label>
+              <label>آزمایش کوچکی که فردا امتحان می‌کنم<textarea id="rvExperiment" rows="2" placeholder="مثلاً گوشی را هنگام تمرین در اتاق دیگری بگذارم."></textarea></label>
+            </div>
+            <div class="review-actions"><span class="save-status" id="reviewSaveStatus">ذخیره خودکار فعال است</span><button class="primary-btn" type="submit">ثبت بازبینی امروز <span>✓</span></button></div>
+          </section>
+        </form>
+      </section>
+
+      <section class="view" id="view-jscoach">
+        <div class="view-heading"><div><div class="eyebrow">JAVASCRIPT SKILL BUILDER</div><h1>مربی و تحلیلگر JavaScript</h1><p>پیشرفت را با فهم، حل مسئله و استقلال بسنج؛ نه فقط ساعت کدنویسی.</p></div><span class="section-pill">ثبت روزانه و خودارزیابی</span></div>
+        <div class="stats-grid"><article class="stat-card"><div class="stat-top"><span>دقایق تمرین امروز</span><span class="stat-icon purple">◷</span></div><div class="stat-main"><strong id="jsMinutesSummary">۰</strong><span class="muted">دقیقه</span></div><small>زمان واقعی تمرکز</small></article><article class="stat-card"><div class="stat-top"><span>میانگین درک مفاهیم</span><span class="stat-icon mint">◎</span></div><div class="stat-main"><strong id="jsUnderstandingSummary">—</strong><span class="muted">از ۵</span></div><small>بر اساس خودارزیابی‌های ذخیره‌شده</small></article><article class="stat-card"><div class="stat-top"><span>تمرین‌های ثبت‌شده</span><span class="stat-icon blue">⌘</span></div><div class="stat-main"><strong id="jsSessionsSummary">۰</strong><span class="muted">جلسه</span></div><small>تعداد جلسه‌های ثبت‌شده</small></article><article class="stat-card"><div class="stat-top"><span>استقلال در حل مسئله</span><span class="stat-icon orange">↗</span></div><div class="stat-main"><strong id="jsIndependenceSummary">—</strong><span class="muted">از ۵</span></div><small>چقدر خودت مسیر حل را پیدا کردی؟</small></article></div>
+        <section class="panel growth-panel"><div class="panel-heading"><div><div class="eyebrow">TODAY'S PRACTICE</div><h2>ثبت جلسه JavaScript</h2><p>حتی یک تمرین کوچک را دقیق ثبت کن.</p></div></div><form id="jsForm" class="growth-form"><label>موضوع تمرین<input id="jsTopic" maxlength="120" placeholder="مثلاً Promise، آرایه‌ها، DOM" /></label><label>دقایق تمرکز<input id="jsMinutes" type="number" min="0" max="600" placeholder="۳۰" /></label><label>چه چیزی ساختی یا حل کردی؟<textarea id="jsOutcome" rows="2" placeholder="مسئله، کد یا نتیجه‌ای که به آن رسیدی..."></textarea></label><label>مفهوم را چقدر فهمیدی؟ <output id="jsUnderstandingOut">۳ از ۵</output><input id="jsUnderstanding" type="range" min="1" max="5" value="3" /></label><label>چقدر مستقل حل کردی؟ <output id="jsIndependenceOut">۳ از ۵</output><input id="jsIndependence" type="range" min="1" max="5" value="3" /></label><label>کمک AI چقدر لازم شد؟<select id="jsAiHelp"><option value="0">بدون کمک</option><option value="1">فقط راهنمایی کوچک</option><option value="2" selected>توضیح یا نمونه لازم شد</option><option value="3">بخش زیادی را AI نوشت</option></select></label><label class="wide-field">اشتباه یا نکته‌ای که باید مرور کنم<textarea id="jsBlocker" rows="2" placeholder="چه چیزی هنوز مبهم است؟"></textarea></label><button class="primary-btn" type="submit">ثبت جلسه و تحلیل <span>✓</span></button></form></section>
+        <section class="panel"><div class="panel-heading"><div><div class="eyebrow">NEXT BEST STEP</div><h2>پیشنهاد تمرین بعدی</h2></div></div><div id="jsCoachAdvice" class="coach-insights"><div class="insight"><div class="insight-icon">✦</div><div><strong>تمرین بعدی</strong><p>بعد از ثبت چند جلسه، پیشنهادها بر اساس میزان درک و استقلالت دقیق‌تر می‌شوند.</p></div></div></div><div id="jsRecentSessions" class="session-list"></div></section>
+      </section>
+      <section class="view" id="view-speakinglab">
+        <div class="view-heading"><div><div class="eyebrow">SPEAK WITH CLARITY</div><h1>مربی فن بیان</h1><p>روزانه ۵ تا ۱۰ دقیقه؛ واضح، آرام و با ساختار صحبت کن.</p></div><span class="section-pill">تمرین کوتاه روزانه</span></div>
+        <section class="panel speaking-prompt"><div class="eyebrow">موضوع تمرین امروز</div><h2 id="speechPrompt">یک مهارتی را که اخیراً یاد گرفته‌ای، در یک دقیقه توضیح بده.</h2><p>ساختار پیشنهادی: مقدمه کوتاه، دو نکته اصلی، یک مثال و جمع‌بندی.</p><button class="secondary-btn" id="newSpeechPrompt">موضوع جدید ↻</button></section>
+        <section class="panel"><div class="panel-heading"><div><h2>بازخورد بعد از صحبت</h2><p>اگر خواستی صدایت را با ضبط‌کننده گوشی ضبط کن؛ اینجا نتیجه تمرین را ثبت کن.</p></div></div><form id="speechForm" class="growth-form"><label>مدت تمرین (دقیقه)<input id="speechMinutes" type="number" min="0" max="120" placeholder="۵" /></label><label>وضوح و قابل‌فهم بودن <output id="speechClarityOut">۳ از ۵</output><input id="speechClarity" type="range" min="1" max="5" value="3" /></label><label>سرعت و مکث مناسب <output id="speechPaceOut">۳ از ۵</output><input id="speechPace" type="range" min="1" max="5" value="3" /></label><label>اعتمادبه‌نفس حین صحبت <output id="speechConfidenceOut">۳ از ۵</output><input id="speechConfidence" type="range" min="1" max="5" value="3" /></label><label class="wide-field">چه چیزی خوب بود؟<textarea id="speechWin" rows="2" placeholder="مثلاً مثال خوبی زدم و واضح حرف زدم..."></textarea></label><label class="wide-field">برای تمرین بعدی چه چیزی را بهتر می‌کنم؟<textarea id="speechNext" rows="2" placeholder="مثلاً آهسته‌تر صحبت کنم و مکث کنم..."></textarea></label><button class="primary-btn" type="submit">ثبت تمرین فن بیان <span>✓</span></button></form></section>
+        <section class="panel"><div class="panel-heading"><div><h2>قالب تمرین ۵ دقیقه‌ای</h2><p>از این الگو هر روز استفاده کن.</p></div></div><div class="routine-steps"><div><b>۱ دقیقه</b><span>موضوع را انتخاب کن و سه نکته بنویس.</span></div><div><b>۲ دقیقه</b><span>با صدای بلند توضیح بده؛ لازم نیست بی‌نقص باشد.</span></div><div><b>۱ دقیقه</b><span>به وضوح، سرعت و مکث خودت توجه کن.</span></div><div><b>۱ دقیقه</b><span>یک نکته را انتخاب کن و دوباره تمرین کن.</span></div></div></section>
+      </section>
+      <section class="view" id="view-booklab">
+        <div class="view-heading"><div><div class="eyebrow">READ · RETRIEVE · APPLY</div><h1>مربی کتاب‌خوانی و «بیش‌ یادگیری»</h1><p>کم بخوان، با زبان خودت توضیح بده و یک نکته را در زندگی امتحان کن.</p></div><span class="section-pill">۱۰ تا ۱۵ دقیقه</span></div>
+        <section class="panel book-plan"><div class="eyebrow">روش مطالعه پیشنهادی</div><div class="routine-steps"><div><b>۱. بخوان</b><span>۱۰ دقیقه بدون عجله مطالعه کن.</span></div><div><b>۲. کتاب را ببند</b><span>بدون نگاه‌کردن، سه نکته را از حافظه بنویس.</span></div><div><b>۳. توضیح بده</b><span>مطلب را طوری توضیح بده که یک دوست مبتدی بفهمد.</span></div><div><b>۴. به کار ببر</b><span>یک اقدام کوچک برای امروز انتخاب کن.</span></div></div><p class="muted">نام دقیق کتاب و فصل را خودت ثبت کن تا برنامه به محتوای واقعی کتابت متصل باشد.</p></section>
+        <section class="panel"><div class="panel-heading"><div><h2>ثبت مطالعه امروز</h2><p>خلاصه را با زبان خودت بنویس؛ رونویسی کافی نیست.</p></div></div><form id="bookForm" class="growth-form"><label>عنوان کتاب<input id="bookTitle" maxlength="150" placeholder="بیش‌ یادگیری (نام دقیق را بررسی کن)" /></label><label>فصل یا صفحات<input id="bookPages" maxlength="100" placeholder="فصل ۱ یا صفحات ۱۰ تا ۱۸" /></label><label>مدت مطالعه (دقیقه)<input id="bookMinutes" type="number" min="0" max="300" placeholder="۱۵" /></label><label class="wide-field">سه نکته‌ای که از حافظه به یاد دارم<textarea id="bookRecall" rows="3" placeholder="بدون نگاه‌کردن به کتاب بنویس..."></textarea></label><label class="wide-field">خلاصه با زبان خودم<textarea id="bookSummary" rows="3" placeholder="اگر بخواهم برای یک دوست توضیح بدهم..."></textarea></label><label class="wide-field">یک کاربرد در زندگی واقعی<textarea id="bookAction" rows="2" placeholder="امروز این ایده را کجا امتحان می‌کنم؟"></textarea></label><label class="wide-field">سؤالی که هنوز دارم<textarea id="bookQuestion" rows="2" placeholder="چه چیزی هنوز برایم روشن نیست؟"></textarea></label><button class="primary-btn" type="submit">ثبت جلسه مطالعه <span>✓</span></button></form></section>
+        <section class="panel"><div class="panel-heading"><div><h2>مرور فعال</h2><p>پیش از بازکردن یادداشت‌های قبلی، سعی کن پاسخ را از حافظه بازیابی کنی.</p></div></div><label class="standalone-field">سؤال مرور من<input id="bookReviewQuestion" placeholder="مثلاً ایده اصلی این فصل چه بود؟" /></label><label class="standalone-field">پاسخ از حافظه<textarea id="bookReviewAnswer" rows="3" placeholder="اول از حافظه جواب بده، بعد کتاب را بررسی کن..."></textarea></label><button class="secondary-btn" id="saveBookReview">ذخیره مرور</button></section>
+      </section>
+      <section class="view" id="view-routines">
+        <div class="view-heading"><div><div class="eyebrow">START GENTLY · CLOSE INTENTIONALLY</div><h1>روتین صبح و شب</h1><p>روتین قرار نیست سخت‌گیرانه باشد؛ آن را با روزهای واقعی زندگی هماهنگ کن.</p></div><span class="section-pill">قابل تنظیم با شرایط تو</span></div>
+        <div class="content-grid"><section class="panel"><div class="panel-heading"><div><div class="eyebrow">MORNING · ۱۵–۳۰ MIN</div><h2>شروع روز</h2><p>یک شروع ساده برای انرژی و تمرکز.</p></div><span class="stat-icon orange">☼</span></div><div id="morningRoutine" class="routine-checklist"><label><input type="checkbox" data-routine="morning:water"> آب خوردن و کمی نور روز</label><label><input type="checkbox" data-routine="morning:move"> ۳ تا ۵ دقیقه حرکت سبک</label><label><input type="checkbox" data-routine="morning:calm"> یک دقیقه تنفس آرام یا سکوت</label><label><input type="checkbox" data-routine="morning:plan"> نوشتن سه اولویت واقع‌بینانه</label><label><input type="checkbox" data-routine="morning:focus"> شروع یک کار مهم قبل از گشت‌وگذار در گوشی</label></div><label class="standalone-field">یادداشت روتین صبح<textarea id="morningNote" rows="2" placeholder="چه چیزی کمک کرد روز را بهتر شروع کنی؟"></textarea></label></section>
+        <section class="panel"><div class="panel-heading"><div><div class="eyebrow">EVENING · ۱۵–۲۰ MIN</div><h2>پایان آرام روز</h2><p>روز را ببند و فردا را ساده‌تر کن.</p></div><span class="stat-icon blue">☾</span></div><div id="nightRoutine" class="routine-checklist"><label><input type="checkbox" data-routine="night:phone"> کم‌کردن استفاده از گوشی پیش از خواب</label><label><input type="checkbox" data-routine="night:review"> مرور بدون سرزنش روز</label><label><input type="checkbox" data-routine="night:prepare"> آماده‌کردن وسایل و محیط فردا</label><label><input type="checkbox" data-routine="night:read"> چند دقیقه مطالعه آرام</label><label><input type="checkbox" data-routine="night:sleep"> انتخاب زمان منطقی برای خواب</label></div><label class="standalone-field">یادداشت روتین شب<textarea id="nightNote" rows="2" placeholder="فردا چه چیزی را ساده‌تر می‌کنی؟"></textarea></label></section></div>
+        <section class="panel"><div class="panel-heading"><div><h2>تحلیل روتین‌ها</h2><p>این درصد فقط میزان انجام چک‌لیست را نشان می‌دهد، نه ارزش یا کیفیت تو را.</p></div></div><div class="routine-analysis"><div><span>صبح</span><div class="progress-track"><span id="morningRoutineBar"></span></div><b id="morningRoutinePct">۰٪</b></div><div><span>شب</span><div class="progress-track"><span id="nightRoutineBar"></span></div><b id="nightRoutinePct">۰٪</b></div></div></section>
+      </section>
+      <footer class="app-footer"><span>مسیر من · ساخته‌شده برای رشد واقعی</span><span>قدم کوچک امروز، سرمایه فرداست ✦</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
